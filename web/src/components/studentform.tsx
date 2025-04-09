@@ -1,7 +1,8 @@
+import axios from 'axios';
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-interface StudentDataTypes{
+export interface StudentDataTypes{
   Name:string,
   RollNo:string,
   Allergy:string,
@@ -14,30 +15,28 @@ interface StudentDataTypes{
 export const StudentInfoForm=()=>{
   const [imagePreview, setImagePreview] = useState(null);
     
+  const imgRef=useRef<any>(null);
+    // const [data,setdata]=useState([]);
+    const [img,setimg]=useState("");
   const nameRef=useRef<HTMLInputElement>(null);
   const RollNoRef=useRef<HTMLInputElement>(null);
   const AllergyRef=useRef<HTMLInputElement>(null);
   const RackNumberRef=useRef<HTMLInputElement>(null);
   const DevisionRef=useRef<HTMLSelectElement>(null);
   const BusRouteRef=useRef<HTMLSelectElement>(null);
-  const PhotoRef=useRef<HTMLInputElement>(null);
   const navigate=useNavigate();
 
    const SubmitStudentData=()=>{
     
     if(nameRef.current?.value==="" || RollNoRef.current?.value==="" || AllergyRef.current?.value==="" ||RackNumberRef.current?.value===""||
-      DevisionRef.current?.value===""|| BusRouteRef.current?.value==="" || PhotoRef.current?.value===""){
+      DevisionRef.current?.value===""|| BusRouteRef.current?.value==="" || imgRef.current?.value===""){
      alert("Enter Complete Details");
      return;
      } else{
 
-      console.log("this is my image",PhotoRef.current?.files)
-      const file=PhotoRef.current?.files?.[0];
-      if(file){
-        //@ts-ignore
-        const imageURL = URL.createObjectURL(file);
-        console.log("my url is",imageURL)
-        // SetimageUrl(imageURL);
+    
+    
+       
         const StudentData:StudentDataTypes={
           Name:nameRef.current?.value || "",
           RollNo:RollNoRef.current?.value || "",
@@ -45,26 +44,34 @@ export const StudentInfoForm=()=>{
           RackNumber:RackNumberRef.current?.value || "",
           Devision:DevisionRef.current?.value || "",
           BusRoute:BusRouteRef.current?.value || "",
-          Photo:imageURL
+          Photo:img
         }
-        localStorage.setItem("studentData",JSON.stringify(StudentData));
-        navigate("/")
-      }
+        //@ts-ignore
+        let ExistingData=JSON.parse(localStorage.getItem("studentData")) || [];
+        ExistingData.push(StudentData);
+        localStorage.setItem("studentData",JSON.stringify(ExistingData));
+        navigate("/IdCard-generated")
+      
   
   }
    }
 
 
-   const handleImageChange = (e:any) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        //@ts-ignore
-        setImagePreview(reader.result);
-      };
-      reader.readAsDataURL(file);
-    }
+   const handleImageChange =async(event:any) => {
+    const file=event.target.files[0];
+    console.log("my images",file)
+    // console.log(imgRef.current.value)
+    if(!file) return;
+
+    const data=new FormData();
+    data.append("file",file);
+    data.append("upload_preset","employapp");
+    data.append("cloud_name","dnlqcnhoy");
+    const resp=await axios.post("https://api.cloudinary.com/v1_1/dnlqcnhoy/image/upload",data);
+   
+    console.log("from cludinary response : ",resp.data.url);
+    setimg(resp.data.url)
+    setImagePreview(resp.data.url)
   };
 
   return (
@@ -175,7 +182,7 @@ export const StudentInfoForm=()=>{
               <label htmlFor='uploadimg' className="block rounded-xl border-1 cursor-pointer h-10 w-28 flex items-center justify-center text-sm font-medium text-gray-900">
               Choose Photo
               </label>
-              <input onChange={handleImageChange} className="hidden" id='uploadimg' type="file" ref={PhotoRef} />
+              <input onChange={handleImageChange} className="hidden" id='uploadimg' type="file" ref={imgRef} />
               {imagePreview && (
           <div className="mt-2">
             <img
