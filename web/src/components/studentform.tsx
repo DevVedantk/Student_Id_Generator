@@ -59,8 +59,6 @@ export const StudentInfoForm=()=>{
 
    const handleImageChange =async(event:any) => {
     const file=event.target.files[0];
-    console.log("my images",file)
-    // console.log(imgRef.current.value)
     if(!file) return;
 
     const data=new FormData();
@@ -68,9 +66,7 @@ export const StudentInfoForm=()=>{
     data.append("upload_preset","employapp");
     data.append("cloud_name","dnlqcnhoy");
     const resp=await axios.post("https://api.cloudinary.com/v1_1/dnlqcnhoy/image/upload",data);
-   
-    console.log("from cludinary response : ",resp.data.url);
-    setimg(resp.data.url)
+       setimg(resp.data.url)
     setImagePreview(resp.data.url)
   };
 

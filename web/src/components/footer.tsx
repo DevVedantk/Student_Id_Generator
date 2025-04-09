@@ -1,6 +1,8 @@
-import { ArrowUpRight, MapPin, Instagram, Linkedin, Dribbble, Ambulance as BehanceLogo } from 'lucide-react';
+import { ArrowUpRight, MapPin, Instagram, Linkedin } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export const Footer=()=>{
+  const navigate=useNavigate();
   return (
     <div className="bg-gray-100 border-t-1 h-1/2">
       {/* Main content area */}
@@ -15,7 +17,7 @@ export const Footer=()=>{
           <div className="flex justify-between items-center mb-20">
             
           
-            <div className="bg-yellow-300 rounded-full p-8">
+            <div  onClick={()=>navigate("/")} className="bg-yellow-300 cursor-pointer rounded-full p-8">
               <ArrowUpRight className="h-8 w-8 text-black" />
             </div>
           </div>
@@ -32,30 +34,30 @@ export const Footer=()=>{
 
             {/* London office */}
             <div>
-              <h4 className="text-lg font-semibold mb-4">LONDON</h4>
-              <a href="mailto:london@agency.com" className="text-gray-400 hover:text-white block mb-2">
-                london@agency.com
+              <h4 className="text-lg font-semibold mb-4">INDIA</h4>
+              <a href="mailto: vedantkhasbage@2005gmail.com" className="text-gray-400 hover:text-white block mb-2">
+                vedantkhasbage2005@gmail.com
               </a>
-              <p className="text-gray-400 mb-4">+44 20 7998 7571</p>
+              <p className="text-gray-400 mb-4">7709535901</p>
               <p className="text-gray-400 mb-4">
-                Unit 306, Metropolitan Wharf,<br />
-                70 Wapping Wall, London E1W 3SS
+                Katol Road Gittikhadan,<br />
+                Nagpur ,India
               </p>
               <button className="flex items-center space-x-2 text-gray-400 hover:text-white">
                 <span>SEE ON MAP</span>
-                <MapPin className="h-4 w-4" />
+                <MapPin  className="h-4 w-4" />
               </button>
             </div>
 
             {/* Buenos Aires office */}
             <div>
-              <h4 className="text-lg font-semibold mb-4">BUENOS AIRES</h4>
+              <h4 className="text-lg font-semibold mb-4">Nagpur</h4>
               <a href="mailto:buenosaires@agency.com" className="text-gray-400 hover:text-white block mb-2">
-                buenosaires@agency.com
+                vedantkhasbage2005@gmail.com
               </a>
-              <p className="text-gray-400 mb-4">+54 11 6799 7949</p>
+              <p className="text-gray-400 mb-4">7709535901</p>
               <p className="text-gray-400 mb-4">
-                Cabildo 1458 1st floor,<br />
+               Lorem, ipsum dolor.<br />
                 Buenos Aires
               </p>
               <button className="flex items-center space-x-2 text-gray-400 hover:text-white">
@@ -66,19 +68,10 @@ export const Footer=()=>{
 
             {/* Newsletter and social */}
             <div>
-              <div className="mb-8">
-                <h4 className="text-sm mb-2">WANT TO BE THE SMARTEST IN YOUR OFFICE?</h4>
-                <button className="flex items-center space-x-2 text-white hover:text-gray-200">
-                  <span>SIGN UP FOR OUR NEWSLETTER</span>
-                  <ArrowUpRight className="h-4 w-4" />
-                </button>
-              </div>
               
               <div>
                 <h4 className="text-sm mb-4">FOLLOW US</h4>
                 <div className="flex space-x-6">
-                  <BehanceLogo className="h-6 w-6 hover:text-gray-300 cursor-pointer" />
-                  <Dribbble className="h-6 w-6 hover:text-gray-300 cursor-pointer" />
                   <Instagram className="h-6 w-6 hover:text-gray-300 cursor-pointer" />
                   <Linkedin className="h-6 w-6 hover:text-gray-300 cursor-pointer" />
                 </div>

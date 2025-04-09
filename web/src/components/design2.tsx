@@ -11,7 +11,6 @@ export const Design2=()=>{
 
     
         const htmlToImageConvert = async () => {
-            console.log("inside")
             try {
                 //@ts-ignore
                 const dataUrl = await htmlToImage.toPng(imageToPngRef.current, { cacheBust: true });
@@ -92,7 +91,7 @@ export const Design2=()=>{
 
 
     <div className="p-8">
-        <button onClick={htmlToImageConvert} className="text h-10 w-36 bg-gray-500 text-white rounded-3xl cursor-pointer font-normal mt-2">Download</button>
+        <button onClick={htmlToImageConvert} className="text hover:bg-gray-900 h-10 w-36 bg-gray-500 text-white rounded-3xl cursor-pointer font-normal mt-2">Download</button>
     </div>
     </div>
 

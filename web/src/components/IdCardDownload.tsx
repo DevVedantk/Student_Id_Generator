@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export const IdCardDownload=({data}:any)=>{
 
-    console.log(data.Photo)
-    console.log("idhar dekhte hain",data);
+  
     const designRef=useRef<HTMLSelectElement>(null);
     const navigate=useNavigate();
 
@@ -49,7 +48,7 @@ export const IdCardDownload=({data}:any)=>{
                </div>
 
                 <div>
-                <button onClick={generateId} className="h-10 bg-gray-700 text-white w-60 font-xl font-semibold bg-blue-400 cursor-pointer rounded-2xl">Download</button>
+                <button onClick={generateId} className="h-10 hover:bg-gray-900 bg-gray-700 text-white w-60 font-xl font-semibold bg-blue-400 cursor-pointer rounded-2xl">Download</button>
                 </div>
              </div>
           </div>

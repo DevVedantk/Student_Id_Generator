@@ -5,8 +5,6 @@ export const MyIdCard=()=>{
 
     //@ts-ignore
     const StudentData=JSON.parse(localStorage.getItem("studentData"));
-
-  console.log("yein hain da",StudentData)
     return <div className="h-screen w-full">
          <NavBar/>
         <div className="flex items-center ml-32 flex-wrap">

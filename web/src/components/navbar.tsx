@@ -12,10 +12,10 @@ const navigate=useNavigate();
           </div>
 
           <div className=" flex gap-8 mr-32 text-gray-700 list-none">
-            <li onClick={()=>navigate("/")}  className="cursor-pointer">Home</li>
+            <li onClick={()=>navigate("/")}  className="cursor-pointer hover:underline">Home</li>
             {/* <li onClick={()=>navigate("/")} className="cursor-pointer">About Us</li> */}
-            <li onClick={()=>navigate("/generate")} className="cursor-pointer">Generate</li>
-            <li onClick={()=>navigate("/my-IdCard")} className="cursor-pointer">My Id</li>
+            <li onClick={()=>navigate("/generate")} className="cursor-pointer hover:underline">Generate</li>
+            <li onClick={()=>navigate("/my-IdCard")} className="cursor-pointer hover:underline">My Id</li>
           </div>
 
           {/* <div className="p-12 mr-28">
