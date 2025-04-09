@@ -1,14 +1,35 @@
 import { useLocation } from "react-router-dom";
 import { QRCodeSVG } from "qrcode.react";
+import * as htmlToImage from 'html-to-image';
+import { useRef } from "react";
+
 export const Design1 = () => {
 
     const data = useLocation().state;
+    const imageToPngRef=useRef(null);
+
+
+
+    const htmlToImageConvert = async () => {
+        console.log("inside")
+        try {
+            //@ts-ignore
+            const dataUrl = await htmlToImage.toPng(imageToPngRef.current, { cacheBust: true });
+            const link = document.createElement('a');
+            link.download = 'Student_Id_card.png';
+            link.href = dataUrl;
+            link.click();
+        } catch (error) {
+            console.error("Image conversion failed:", error);
+        }
+    };
+    
     return (
         <div className="flex items-center justify-center">
 
       
-        <div className="bg-gray-100 flex items-center justify-center p-1">
-            <div className="w-[400px] bg-white rounded-lg overflow-hidden shadow-xl border-2 border-blue-900">
+        <div  className="bg-gray-100 flex items-center justify-center p-1">
+            <div ref={imageToPngRef} className="w-[400px] bg-white rounded-lg overflow-hidden shadow-xl border-2 border-blue-900">
                 <div className="bg-white p-2 text-center">
                     <h1 className="text-2xl font-bold text-blue-900 mb-1">WALNUT SCHOOL PUNE</h1>
                     <p className="text-sm text-gray-600">WALNUT SCHOOL</p>
@@ -19,10 +40,12 @@ export const Design1 = () => {
 
                 <div className="p-4 flex justify-center">
                     <div className="w-28 h-32 bg-blue-100 rounded-lg overflow-hidden">
-                        <img crossOrigin="anonymous"
-                            src={data.Photo}
-                            className="w-full h-full object-cover"
-                        />
+                    <img
+  crossOrigin="anonymous"
+  src={data.Photo}
+  className="w-full h-full object-cover"
+/>
+
                     </div>
                 </div>
 
@@ -48,13 +71,6 @@ export const Design1 = () => {
                                     bgColor="#ffffff"
                                     fgColor="#000000"
                                     level="L"
-                                    imageSettings={{
-                                        src: "https://static.zpao.com/favicon.png",
-                                        height: 16,
-                                        width: 16,
-                                        opacity: 1,
-                                        excavate: true,
-                                    }}
                                 />
                             </div>
                         </div>
@@ -72,7 +88,7 @@ export const Design1 = () => {
 
 
 <div>
-    <button className="h-10 w-32 bg-blue-300 cursor-pointer rounded-xl">Download</button>
+    <button onClick={htmlToImageConvert} className="text h-10 w-36 bg-gray-500 text-white rounded-3xl cursor-pointer font-normal mt-2">Download</button>
 </div>
 </div>
     );

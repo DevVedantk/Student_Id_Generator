@@ -1,13 +1,33 @@
 import { QRCodeSVG } from "qrcode.react";
+import { useRef } from "react";
 import { useLocation } from "react-router-dom";
+import * as htmlToImage from 'html-to-image';
+
 
 export const Design2=()=>{
 
     const data=useLocation().state;
-    console.log("kya bhai",data);
+    const imageToPngRef=useRef(null);
+
+    
+        const htmlToImageConvert = async () => {
+            console.log("inside")
+            try {
+                //@ts-ignore
+                const dataUrl = await htmlToImage.toPng(imageToPngRef.current, { cacheBust: true });
+                const link = document.createElement('a');
+                link.download = 'Student_Id_card.png';
+                link.href = dataUrl;
+                link.click();
+            } catch (error) {
+                console.error("Image conversion failed:", error);
+            }
+        };
+        
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-purple-50 flex items-center justify-center p-4">
-      <div className="w-[350px] bg-white shadow-2xl relative">
+    <div>
+    <div className="min-h-screen flex bg-gradient-to-br from-indigo-50 to-purple-50 flex items-center justify-center p-4">
+      <div ref={imageToPngRef} className="w-[350px] bg-white shadow-2xl relative">
         {/* Top Design Element */}
         <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-600 to-indigo-600 -z-10 transform translate-x-8 -translate-y-8"></div>
         
@@ -64,21 +84,18 @@ export const Design2=()=>{
                                     bgColor="#ffffff"
                                     fgColor="#000000"
                                     level="L"
-                                    imageSettings={{
-                                        src: "https://static.zpao.com/favicon.png",
-                                        height: 24,
-                                        width: 24,
-                                        opacity: 1,
-                                        excavate: true,
-                                    }}
                                 />
                             </div>
           </div>
         </div>
-
-        {/* Bottom Design Element */}
-        <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-purple-600 to-indigo-600 -z-10 transform -translate-x-8 translate-y-8"></div>
       </div>
+
+
+    <div className="p-8">
+        <button onClick={htmlToImageConvert} className="text h-10 w-36 bg-gray-500 text-white rounded-3xl cursor-pointer font-normal mt-2">Download</button>
+    </div>
+    </div>
+
     </div>
   );
 }
