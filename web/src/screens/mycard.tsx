@@ -1,17 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import { MyIds } from "../components/myIds"
 import { NavBar } from "../components/navbar"
 
 export const MyIdCard=()=>{
+    const navigate=useNavigate();
 
     //@ts-ignore
     const StudentData=JSON.parse(localStorage.getItem("studentData"));
+    const hascards=StudentData && StudentData.length >0
     return <div className="h-screen w-full">
          <NavBar/>
         <div className="flex items-center ml-32 flex-wrap">
             {
-                StudentData.map((items:any,idx:any)=>
+              hascards ?  StudentData.map((items:any,idx:any)=>
                     <MyIds key={idx} data={items} />
-                )
+                ) : <p className="text-xl w-full text-center font-semibold text-black font-poppins">To generate ID click <span onClick={()=>navigate("/generate")} className="cursor-pointer text-blue-300"> here </span></p>
             }
         
         </div>

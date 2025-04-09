@@ -114,7 +114,7 @@ export const StudentInfoForm=()=>{
                 <input
                   type="text"
                   ref={AllergyRef}
-                  placeholder="1101"
+                  placeholder="e.g (water,fire)"
                   className="w-full px-4 py-2 rounded border border-gray-200 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors"
                 />
               </div>
