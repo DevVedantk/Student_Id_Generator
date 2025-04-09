@@ -1,5 +1,5 @@
 import { NavBar } from "../components/navbar"
-import { StudentInfoForm } from "../components/stdform"
+import { StudentInfoForm } from "../components/studentform"
 
 export const Generate=()=>{
     return <div className="h-screen w-full">

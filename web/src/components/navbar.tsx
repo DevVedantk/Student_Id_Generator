@@ -8,7 +8,7 @@ const navigate=useNavigate();
 
     return <div className="w-full h-1/10 flex items-center justify-between">
           <div onClick={()=>navigate("/")} className="text-3xl cursor-pointer ml-12 font-semibold p-12 font-poppins">
-                Unity Id            
+                Id Generator           
           </div>
 
           <div className=" flex gap-8 text-gray-700 list-none">
