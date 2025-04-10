@@ -65,7 +65,7 @@ The main goal was to build a fully functional Student ID Card generator without 
 
 ## 📸 Screenshots
 
-> _Add screenshots here if available (e.g., home page, ID preview, download section)_
+> 
 ![Screenshot (615)](https://github.com/user-attachments/assets/d6ffc092-9ced-48d4-b99e-02b8f68b34c9)
 ![Screenshot (616)](https://github.com/user-attachments/assets/3fd24a6a-6ecb-49df-8e2a-acbfc3200215)
 ![Screenshot (617)](https://github.com/user-attachments/assets/ea4e630a-8afc-4cca-97e2-98feb8eb4cbe)
